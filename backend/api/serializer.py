@@ -21,7 +21,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['username'] = user.username
         token['email'] = user.email
         token['bio'] = user.profile.bio
-        token['image'] = user.profile.image
+        token['image'] = str(user.profile.image)
         token['verified'] = user.profile.verified
         
         return token
@@ -30,30 +30,28 @@ class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         write_only=True, validators=[validate_password]
     )
-    password2= serializers.CharField(
-        write_only=True, validators=True
+    password2 = serializers.CharField(
+        write_only=True, validators=[validate_password]
     )
     
     class Meta:
         model = User
-        fields = ['email', 'username', 'password2']
+        fields = ['email', 'username', 'password', 'password2']
         
-        def validate(self, attrs):
-            if attrs['password'] != attrs['password2']:
-                raise serializers.ValidationError({
-                    "password": "Password Fields doesnt match"
-                })
-                
-            return attrs
+    def validate(self, attrs):
+        if attrs['password'] != attrs['password2']:
+            raise serializers.ValidationError({
+                "password": "Passwords do not match"
+            })
+        return attrs
+    
+    def create(self, validated_data):
+        user = User.objects.create(
+            username=validated_data['username'],
+            email=validated_data['email'],
+        )
         
-        def create(self, validated_data):
-            user = User.objects.create(
-                username=validated_data['username'],
-                email=validated_data['email'],
-            )
-            
-            user.set_password(validated_data['password'])
-            user.save()
-            
-            return user
-                
+        user.set_password(validated_data['password'])
+        user.save()
+        
+        return user
