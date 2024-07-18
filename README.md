@@ -1,3 +1,7 @@
+# corsheader
+Cross-Origin Resource Sharing headers, or CORS headers, are an important feature of HTTP that ensures a webpage only uses content permitted by other websites/servers.
+Django-CORS-header Adding CORS headers allows your resources to be accessed on other domains. 
+
 <img width="1147" alt="image" src="https://github.com/user-attachments/assets/23e8c109-0d61-4c73-a7e8-198dceec2aea">
 
 <img width="1147" alt="image" src="https://github.com/user-attachments/assets/7a6f9be9-4f44-46b1-8e5f-e819e296656d">
