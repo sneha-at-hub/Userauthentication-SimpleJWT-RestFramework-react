@@ -1,9 +1,10 @@
 import React from 'react'
-
+import Navbar from './Navbar'
 function Homepage() {
   return (
     <div>
       <>
+      <Navbar />
   <main role="madin" style={{ marginTop: 50 }}>
     {/* Main jumbotron for a primary marketing message or call to action */}
     <div className="jumbotron">
