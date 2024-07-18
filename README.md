@@ -19,7 +19,7 @@ pip install virtualenv
 # Clone the repository
 First, clone the repository to your local machine using Git. Open your terminal and run the following command:
 ```bash
-git clone https://github.com/your-username/your-repository-name.git
+https://github.com/sneha-at-hub/Userauthentication-SimpleJWT-RestFramework-react.git
 ```
 ## Navigate to the project directory
 Change your working directory to the project's directory
